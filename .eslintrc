@@ -1,0 +1,12 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+        "plugin:prettier/recommended"
+    ],
+    "plugins": [
+        "svelte3"
+    ],
+    "rules": {
+        "strict": 0
+    }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "svelte-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "data-generator-retail": "^2.7.0",
+    "fakerest": "^2.1.0",
+    "fetch-mock": "^7.3.3",
+    "history": "4.9.0",
+    "query-string": "^6.4.2",
+    "ra-data-simple-rest": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-svelte3": "^1.0.0",
+    "jest": "^24.7.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "prettier": "^1.17.0",
+    "serve": "^11.0.0",
+    "style-loader": "^0.23.1",
+    "svelte": "^3.0.0",
+    "svelte-loader": "^2.13.3",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "start": "webpack-dev-server --content-base public"
+  }
+}
