@@ -1,30 +1,54 @@
 <script>
-    export let data;
-    export let total;
-    export let pageIndex;
-    export let pageSize;
+    import { getContext, setContext } from 'svelte';
+	let fields = [];
+	
+	const { data } = getContext('list');
+	
+	setContext('datagrid', {
+		addField: field => {
+			const existingFieldIndex = fields.findIndex(f => f.source === field.source);
+			if (existingFieldIndex > -1) {
+				fields[existingFieldIndex] = field;
+			} else {
+				// children are resolved from last to first
+				fields = [field, ...fields];
+			}
+		},
+		removeField: source => {
+			const existingFieldIndex = fields.findIndex(f => f.source === source);
+			if (existingFieldIndex > -1) {
+				fields = [
+					...fields.slice(0, existingFieldIndex),
+					...fields.slice(existingFieldIndex -1)
+				];
+			}
+		}
+	});
 </script>
-
+<slot></slot>
 <table class="mui-table">
 	<thead>
 		<tr>
-			<th>First name</th>
-			<th>Last name</th>
+			{#each fields as field (field.source)}
+				<th>
+					{field.source}
+				</th>
+			{/each}
 		</tr>
 	</thead>
 	<tbody>
-{#if data}
-{#each data as item (item.id)}
+{#if data && data.length > 0}
+{#each data as item}
 	<tr>
-		<td>{item.first_name}</td>
-		<td>{item.last_name}</td>
+		{#each fields as field (field.source)}
+			<td class={field.cellClass}>
+				<svelte:component this={field.component} source={field.source} record={item} />
+			</td>
+		{/each}
 	</tr>
 {/each}
 {:else}
     <tr colspan="2">Loading...</tr>
 {/if}
 	</tbody>
-	<tfoot>
-		{pageIndex * pageSize} / {total}
-	</tfoot>
 </table>

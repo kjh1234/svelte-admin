@@ -48,4 +48,7 @@ module.exports = {
         }),
     ],
     devtool: prod ? false : 'source-map',
+    devServer: {
+        historyApiFallback: true,
+    },
 };
